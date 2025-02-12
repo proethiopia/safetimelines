@@ -3,6 +3,19 @@ import 'package:flutter/material.dart';
 import 'skip_indicator_theme.dart';
 import 'skip_timeline_theme.dart';
 
+mixin SkipThemedIndicatorComponent on Widget {
+  double? get size;
+  Color? get color;
+
+  double? getEffectiveSize(BuildContext context) {
+    return size ?? SkipIndicatorTheme.of(context).size ?? 24.0;
+  }
+
+  Color getEffectiveColor(BuildContext context) {
+    return color ?? SkipIndicatorTheme.of(context).color ?? Colors.grey;
+  }
+}
+
 /// [SkipTimelineNode]'s indicator.
 mixin SkipPositionedIndicator on Widget {
   /// {@template timelines.indicator.position}

@@ -56,7 +56,7 @@ class SkipIndicatorThemeData with Diagnosticable {
   }
 
   @override
-  int get hashCode => hashValues(color, size, position);
+  int get hashCode => Object.hash(color, size, position);
 
   @override
   bool operator ==(Object other) {
@@ -74,7 +74,7 @@ class SkipIndicatorThemeData with Diagnosticable {
     properties
       ..add(ColorProperty('color', color, defaultValue: null))
       ..add(DoubleProperty('size', size, defaultValue: null))
-      ..add(DoubleProperty('position', size, defaultValue: null));
+      ..add(DoubleProperty('position', position, defaultValue: null));
   }
 }
 
@@ -104,4 +104,13 @@ class SkipIndicatorTheme extends InheritedTheme {
   Widget wrap(BuildContext context, Widget child) {
     final ancestorTheme =
         context.findAncestorWidgetOfExactType<SkipIndicatorTheme>();
-    return identical(this, ancestorTheme
+    return identical(this, ancestorTheme)
+        ? child
+        : SkipIndicatorTheme(data: data, child: child);
+  }
+
+  @override
+  bool updateShouldNotify(SkipIndicatorTheme oldWidget) {
+    return data != oldWidget.data;
+  }
+}
