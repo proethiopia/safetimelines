@@ -16,7 +16,7 @@ dependencies:
 
   # Add any other dependencies your project uses here
   # e.g., provider: ^6.0.0
-  rxdart: ^0.27.7
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:
